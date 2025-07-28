@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# React build
+client/build/
+
+# Server dist (if using TypeScript)
+server/dist/
+
+# Logs
+*.log
+
+# Env files
+.env
+client/.env
+server/.env
+
+# OS and editor stuff
+.DS_Store
+.vscode/
+.idea/
