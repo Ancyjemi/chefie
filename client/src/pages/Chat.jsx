@@ -149,11 +149,11 @@ export default function Chat() {
         return;
       }
 
-      let menuText = "📋 **OUR MENU:**\n\n";
+      let menuText = "📋 OUR MENU:\n\n";
 
       menuData.categories.forEach((category) => {
         if (category.items && category.items.length > 0) {
-          menuText += `🍽️ **${category.name}**\n`;
+          menuText += `🍽️ ${category.name}\n`;
           category.items.forEach((item, index) => {
             menuText += `${index + 1}. ${item.name} - ₹${item.price}\n`;
             if (item.description) menuText += `   📝 ${item.description}\n`;
@@ -192,8 +192,8 @@ export default function Chat() {
         orderData
       );
       if (res.data && res.data.order) {
-        let summaryText = "✅ **ORDER CONFIRMED!** ✅\n\n";
-        summaryText += "📋 **ORDER SUMMARY:**\n";
+        let summaryText = "✅ ORDER CONFIRMED! ✅\n\n";
+        summaryText += "📋 ORDER SUMMARY:**\n";
 
         currentOrder.forEach((item, index) => {
           summaryText += `${index + 1}. ${item.name} (${item.quantity}x)\n`;
@@ -203,9 +203,9 @@ export default function Chat() {
           summaryText += `   💰 ₹${item.total}\n\n`;
         });
 
-        summaryText += `📍 **Delivery Address:** ${userAddress}\n`;
-        summaryText += `💵 **Total Amount:** ₹${orderData.totalPrice}\n\n`;
-        summaryText += `🆔 **Order ID:** ${res.data.order._id}\n\n`;
+        summaryText += `📍 Delivery Address: ${userAddress}\n`;
+        summaryText += `💵 Total Amount: ₹${orderData.totalPrice}\n\n`;
+        summaryText += `🆔 Order ID: ${res.data.order._id}\n\n`;
         summaryText +=
           "🕐 Your order is being prepared! You'll receive updates soon.\n";
         summaryText += "Thank you for ordering with us! 😊";
@@ -274,7 +274,7 @@ export default function Chat() {
       return;
     }
 
-    let cartText = "🛒 **YOUR CURRENT ORDER:**\n\n";
+    let cartText = "🛒 YOUR CURRENT ORDER:\n\n";
     let total = 0;
 
     currentOrder.forEach((item, index) => {
@@ -288,7 +288,7 @@ export default function Chat() {
       cartText += "\n";
     });
 
-    cartText += `💰 **Total: ₹${total}**\n\n`;
+    cartText += `💰 Total: ₹${total}\n\n`;
     cartText += "Say 'confirm order' to place your order or add more items! 🍽️";
 
     setChat((prev) => [...prev, { role: "ai", text: cartText }]);

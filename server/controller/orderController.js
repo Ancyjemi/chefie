@@ -51,7 +51,7 @@ export const handleAIOrder = async (req, res) => {
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
-    res.json(orders);
+    res.status(200).json(orders);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch orders" });
   }
@@ -59,18 +59,14 @@ export const getAllOrders = async (req, res) => {
 
 export const updateOrderStatus = async (req, res) => {
   const { id } = req.params;
-  const { status, adminNotes, rejectionReason } = req.body;
-
+  const { status } = req.body;
   try {
-    const order = await Order.findById(id);
-    if (!order) return res.status(404).json({ error: "Order not found" });
-
-    order.status = status;
-    if (adminNotes) order.adminNotes = adminNotes;
-    if (rejectionReason) order.rejectionReason = rejectionReason;
-
-    const updatedOrder = await order.save();
-    res.json({ success: true, order: updatedOrder });
+    const updated = await Order.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    res.json(updated);
   } catch (err) {
     res.status(500).json({ error: "Failed to update order status" });
   }

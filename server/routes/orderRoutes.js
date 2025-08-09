@@ -23,6 +23,6 @@ import {
 const router = express.Router();
 router.post("/ai", handleAIOrder);
 router.get("/", getAllOrders);
-router.put("/status/:id", updateOrderStatus);
+router.put("/:id/status/", updateOrderStatus);
 
 export default router;
